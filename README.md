@@ -19,12 +19,10 @@ Open the .env file and update the necessary environment variables such as DB_CON
 -In the command prompt, run 'php artisan migrate' to execute the database migrations.
 
 **Generate Application Key:**
--In the command prompt, run 'php artisan key
-' to generate an application key.
+-In the command prompt, run 'php artisan key:generate' to generate an application key.
 
 **Link Storage:**
-0In the command prompt, run 'php artisan storage
-' to create a symbolic link from the "public/storage" directory to the "storage/app/public" directory.
+0In the command prompt, run 'php artisan storage:link' to create a symbolic link from the "public/storage" directory to the "storage/app/public" directory.
 
 **Start the Development Server:**
 -In the command prompt, run 'php artisan serve' to start the development server.
