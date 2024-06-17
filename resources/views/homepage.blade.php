@@ -1,4 +1,6 @@
 @include('header')
+
+@if(session('role')=="admin")
 <div class="container mt-4">
     <div class="row mb-2">
         <div class="col-10">
@@ -12,11 +14,13 @@
                 </div>
             </div>
         </div>
-        <div class="col-1 d-flex align-items-center">
-            <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#registerModal">Add</button>
-        </div>
-        <div class="col-1 d-flex align-items-center">
-            <a class="btn btn-secondary w-100 text-center" href="/logout">Logout</a>
+        <div class="col-2 d-flex align-items-center">
+            <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#registerModal">
+                Add New &nbsp;
+                <i class="material-icons align-middle">
+                    person_add
+                </i>
+            </button>
         </div>
     </div>
 
@@ -27,10 +31,7 @@
             </div>
         @endif
         <div class="row">
-            <div class="col-4">
-                
-            </div>
-            <div class="col-8">
+            <div class="col">
                 <div class="table-responsive">
                     <table id="table_users" class="table table-bordered">
                         <thead class="table-primary text-uppercase border-0">
@@ -52,7 +53,7 @@
                                 <td>{{ $item->age }}</td>
                                 <td>{{ $item->contactNumber }}</td>
                                 <td>
-                                    <a class="btn btn-primary" href="{{ url('edit/'.$item->id) }}">Edit</a>
+                                    <a class="btn btn-primary" href="{{ url('view/'.$item->id) }}">View</a>
                                     <a class="btn btn-danger delete-btn" data-item-id="{{ $item->id }}" href="#" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">Delete</a>
 
                                 </td>
@@ -64,6 +65,15 @@
             </div>
         </div>
 </div>
+@else
+<div class="alert alert-danger mt-2">
+    <div class="container-fluid">
+        You are not allowed to view this page.
+    </div>
+</div>
+@endif
+
+
 
 <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -144,9 +154,11 @@
                     <input type="password" class="form-control" id="password" name="reg_Password" required>
                 </div>
             </div>
+            <div class="mt-2">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
             
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save changes</button>
           </form>
         </div>
         <div class="modal-footer">

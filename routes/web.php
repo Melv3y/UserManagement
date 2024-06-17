@@ -11,7 +11,7 @@ Route::get('/', function () {
 });
 
 Route::post('homepage', [Users::class, 'userLogin']);
-Route::get('homepage', function() {
+Route::middleware('auth.user')->get('homepage', function() {
     $collection = App\Models\User::all();
     return view('homepage', ['collection' => $collection]);
 });
@@ -26,6 +26,6 @@ Route::get('/logout', function () {
 });
 
 Route::post('register', [Users::class, 'registerUser']);
-Route::get('edit/{id}', [Users::class, 'showEditData']);
+Route::get('view/{id}', [Users::class, 'showEditData']);
 Route::get('delete/{id}', [Users::class, 'deleteUser']);
 Route::post('edit', [Users::class, 'editUser']);

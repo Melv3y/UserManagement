@@ -14,9 +14,27 @@ class Users extends Controller
 
         $user = User::where('reg_userName', $req->input('username'))->first();
 
+        $inputUsername = $req->input('username');
+        $inputPassword = $req->input('userpassword');
+
+        // Check if the input username and password match the admin credentials
+        if ($inputUsername === 'admin' && $inputPassword === 'admin') {
+            $req->session()->put('role', 'admin');
+            $req->session()->put('username', 'admin');
+            return redirect('homepage');
+        }
+
         if ($user && $user->reg_Password === $req->input('userpassword')) {
             $req->session()->put('username', $user->reg_userName);
-            return redirect('homepage');
+            if ($user->role === 'admin') {
+                $req->session()->put('role', $user->role);
+                $req->session()->put('id', $user->id);
+                return redirect('homepage');
+            } else {
+                $req->session()->put('role', $user->role);
+                $req->session()->put('id', $user->id);
+                return redirect('view/'.$user->id);
+            }
         } else {
             return back()->withErrors(['username' => 'Invalid username or password.']);
         }
@@ -66,7 +84,7 @@ class Users extends Controller
     function showEditData($id)
     {
         $data= User::find($id);
-        return view('edit',['data'=>$data]);
+        return view('view',['data'=>$data]);
     }
 
     function editUser(Request $req)
@@ -77,10 +95,11 @@ class Users extends Controller
         $data->gender = $req->gender;
         $data->age = $req->age;
         $data->contactNumber = $req->contactNumber;
+        $data->role =$req->role;
         $data->reg_userName = $req->reg_userName;
         $data->reg_Password = $req->reg_Password;
         $data->save();
         
-        return redirect('edit/' . $data->id)->with('success', 'User information updated successfully!');
+        return redirect('view/' . $data->id)->with('success', 'User information updated successfully!');
     }
 }
