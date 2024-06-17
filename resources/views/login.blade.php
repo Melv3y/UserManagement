@@ -24,26 +24,35 @@
                     <div class="card-header">
                         User Login 
                     </div>
+                    @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                
                 <form action="homepage" method="POST">
                     <div class="card-body p-2">
-                            @csrf
-                            <input type="text" id="username" maxlength="10" name="username" class="form-control" placeholder="Enter User ID"/>
-                            <span class="text-danger">@error('username'){{$message}}@enderror</span>
-
-                            <input type="password" id="userpassword" maxlength="15" name="userpassword" class="form-control" placeholder="Enter User Passowrd"/>
-                            <span class="text-danger">@error('userpassword'){{$message}}@enderror</span>
-                            
+                        @csrf
+                        <input type="text" id="username" maxlength="10" name="username" class="form-control" placeholder="Enter User ID"/>
+                        <span class="text-danger">@error('username'){{$message}}@enderror</span>
+                
+                        <input type="password" id="userpassword" maxlength="15" name="userpassword" class="form-control" placeholder="Enter User Password"/>
+                        <span class="text-danger">@error('userpassword'){{$message}}@enderror</span>
                     </div>
-                        <div class="card-footer justify-content-between">
-                                <button class="btn btn-primary mt-4 w-100" type="submit">
-                                        Login
-                                </button>
-
-                                <button class="btn btn-success mt-4 w-100" type="button" data-bs-toggle="modal" data-bs-target="#registerModal">
-                                         Create Account
-                                </button>
-                        </div>
-                    </form>
+                    <div class="card-footer justify-content-between">
+                        <button class="btn btn-primary mt-4 w-100" type="submit">
+                            Login
+                        </button>
+                        <button class="btn btn-success mt-4 w-100" type="button" data-bs-toggle="modal" data-bs-target="#registerModal">
+                            Create Account
+                        </button>
+                    </div>
+                </form>
+                
                 </div>
                 </div>
                 

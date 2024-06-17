@@ -28,4 +28,4 @@ Route::get('/logout', function () {
 Route::post('register', [Users::class, 'registerUser']);
 Route::get('edit/{id}', [Users::class, 'showEditData']);
 Route::get('delete/{id}', [Users::class, 'deleteUser']);
-Route::post('edit',[Users::class,'editUser']);
+Route::post('edit', [Users::class, 'editUser']);
