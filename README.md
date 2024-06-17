@@ -34,6 +34,6 @@ The project can be accessed through the provided URL, for example: 'http://127.0
 
 **Additional Notes**
 -Admins can only modify/provide admin roles
-I've set an admin account with the username:admin and password:admin
+-I've set an admin account with the username:admin and password:admin
 -registered users in the login page will automatically have user role.
 -make sure ID in your table is auto incremented.
