@@ -95,94 +95,188 @@
 
 
 <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="registerModalLabel">Register New User</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="registerModalLabel">Register New User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="registerForm" method="POST" action="{{ url('register') }}">
+                    @csrf
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="firstName" name="firstName" maxlength="50">
+                                <label for="firstName" class="form-label">First Name</label>
+                                <div class="invalid-feedback">Please enter your first name.</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="lastName" name="lastName" maxlength="50">
+                                <label for="lastName" class="form-label">Last Name</label>
+                                <div class="invalid-feedback">Please enter your last name.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-5">
+                            <div class="form-floating">
+                                <select class="form-select" id="gender" name="gender">
+                                    <option value="">Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                                <label for="gender" class="form-label">Gender</label>
+                                <div class="invalid-feedback">Please select your gender.</div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-floating">
+                                <input type="number" class="form-control" id="age" name="age">
+                                <label for="age" class="form-label">Age</label>
+                                <div class="invalid-feedback">Please enter your age.</div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-floating">
+                                <input type="tel" class="form-control" id="contactNumber" name="contactNumber" maxlength="12">
+                                <label for="contactNumber" class="form-label">Contact Number</label>
+                                <div class="invalid-feedback">Please enter your contact number.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row mt-2">
+                        <div class="col">
+                            <div class="form-floating">
+                                <select class="form-select" id="role" name="role">
+                                    <option value="">Select role</option>
+                                    <option value="admin">Admin</option>
+                                    <option value="user">User</option>
+                                </select>
+                                <label for="role" class="form-label">User Role</label>
+                                <div class="invalid-feedback">Please select a role.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="userName" name="reg_userName" maxlength="20">
+                                <label for="userName" class="form-label">Username</label>
+                                <div class="invalid-feedback">Please enter a username.</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-floating">
+                                <input type="password" class="form-control" id="password" name="reg_Password" maxlength="20">
+                                <label for="password" class="form-label">Password</label>
+                                <div class="invalid-feedback">Please enter a password.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-2 d-flex justify-content-between">
+                        <button type="submit" class="btn btn-primary w-50">Save User</button>
+                        <button type="button" class="btn btn-secondary w-25" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer"></div>
         </div>
-        <div class="modal-body">
-          <form id="registerForm" method="POST" action="{{ url('register') }}">
-              @csrf
-            <div class="row mb-3">
-              <div class="col-md-6">
-                <label for="firstName" class="form-label">First Name</label>
-                <input type="text" class="form-control" id="firstName" name="firstName" required maxlength="50">
-              </div>
-              <div class="col-md-6">
-                <label for="lastName" class="form-label">Last Name</label>
-                <input type="text" class="form-control" id="lastName" name="lastName" required maxlength="50">
-              </div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-md-4">
-                <label for="gender" class="form-label">Gender</label>
-                <select class="form-select" id="gender" name="gender" required>
-                  <option value="">Select Gender</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                </select>
-              </div>
-              <div class="col-md-4">
-                <label for="age" class="form-label">Age</label>
-                <input type="number" class="form-control" id="age" name="age" required>
-              </div>
-              <div class="col-md-4">
-                <label for="contactNumber" class="form-label">Contact Number</label>
-                <input type="tel" class="form-control" id="contactNumber" name="contactNumber" required maxlength="12">
-              </div>
-            </div>
-            <hr>
-            <div class="row mt-2">
-                <div class="col">
-                    <label for="role" class="form-label">User Role</label>
-                    <select class="form-select" id="role" name="role" required>
-                        <option value="">Select role</option>
-                        <option value="admin">Admin</option>
-                        <option value="user">User</option>
-                    </select>
-                </div>
-            </div>
-                
-            <div class="row mt-2">
-                <div class="col-6">
-                        <label for="userName" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="userName" name="reg_userName" required maxlength="30">
-                </div>
-                <div class="col-6">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" name="reg_Password" required>
-                </div>
-            </div>
-            <div class="mt-2">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
-            </div>
-            
-          </form>
-        </div>
-        <div class="modal-footer">
-        </div>
-      </div>
     </div>
-  </div>
+</div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const deleteButtons = document.querySelectorAll('.delete-btn');
-        const confirmDeleteButton = document.getElementById('confirmDeleteButton');
 
-        deleteButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                const itemId = button.getAttribute('data-item-id');
-                confirmDeleteButton.setAttribute('href', '{{ url('delete/') }}/' + itemId);
-            });
+
+@include('footer')
+
+<script>
+    $('#age').on('input', function() {
+        var value = $(this).val().replace(/[^0-9]/g, '');
+        if (value.length > 3) {
+            value = '100';
+        }
+        $(this).val(value);
+    });
+
+    $(document).ready(function() {
+        $('#registerForm').submit(function(event) {
+            var isValid = true;
+
+            var firstName = $('#firstName').val().trim();
+            if (firstName === '') {
+                $('#firstName').addClass('is-invalid').removeClass('is-valid');
+                isValid = false;
+            } else {
+                $('#firstName').removeClass('is-invalid').addClass('is-valid');
+            }
+
+            var lastName = $('#lastName').val().trim();
+            if (lastName === '') {
+                $('#lastName').addClass('is-invalid').removeClass('is-valid');
+                isValid = false;
+            } else {
+                $('#lastName').removeClass('is-invalid').addClass('is-valid');
+            }
+
+            var gender = $('#gender').val();
+            if (gender === '') {
+                $('#gender').addClass('is-invalid').removeClass('is-valid');
+                isValid = false;
+            } else {
+                $('#gender').removeClass('is-invalid').addClass('is-valid');
+            }
+
+            var age = $('#age').val().trim();
+            if (age === '' || isNaN(age) || parseInt(age) <= 0) {
+                $('#age').addClass('is-invalid').removeClass('is-valid');
+                isValid = false;
+            } else {
+                $('#age').removeClass('is-invalid').addClass('is-valid');
+            }
+
+            var contactNumber = $('#contactNumber').val().trim();
+            if (contactNumber === '') {
+                $('#contactNumber').addClass('is-invalid').removeClass('is-valid');
+                isValid = false;
+            } else {
+                $('#contactNumber').removeClass('is-invalid').addClass('is-valid');
+            }
+
+            var role = $('#role').val();
+            if (role === '') {
+                $('#role').addClass('is-invalid').removeClass('is-valid');
+                isValid = false;
+            } else {
+                $('#role').removeClass('is-invalid').addClass('is-valid');
+            }
+
+            var userName = $('#userName').val().trim();
+            if (userName === '') {
+                $('#userName').addClass('is-invalid').removeClass('is-valid');
+                isValid = false;
+            } else {
+                $('#userName').removeClass('is-invalid').addClass('is-valid');
+            }
+
+            var password = $('#password').val().trim();
+            if (password === '') {
+                $('#password').addClass('is-invalid').removeClass('is-valid');
+                isValid = false;
+            } else {
+                $('#password').removeClass('is-invalid').addClass('is-valid');
+            }
+
+            if (!isValid) {
+                event.preventDefault();
+            }
         });
     });
 </script>
 
 
-@include('footer')
 <script type="text/javascript">
     $(document).ready(function () {
         $('#table_users').DataTable();

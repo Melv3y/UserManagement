@@ -178,6 +178,15 @@
 </script>
 
 <script>
+  $('#age').on('input', function() {
+    var value = $(this).val().replace(/[^0-9]/g, '');
+    if (value.length > 3) {
+        value = '100';
+    }
+    $(this).val(value);
+  });
+
+
   $(document).ready(function() {
       $('#registerForm').submit(function(event) {
           var isValid = true;
@@ -213,6 +222,7 @@
           } else {
               $('#age').removeClass('is-invalid');
           }
+
 
           var contactNumber = $('#contactNumber').val().trim();
           if (contactNumber === '') {
