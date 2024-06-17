@@ -193,6 +193,20 @@
 @include('footer')
 
 <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const deleteButtons = document.querySelectorAll('.delete-btn');
+        const confirmDeleteButton = document.getElementById('confirmDeleteButton');
+
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const itemId = button.getAttribute('data-item-id');
+                confirmDeleteButton.setAttribute('href', '{{ url('delete/') }}/' + itemId);
+            });
+        });
+    });
+</script>
+
+<script>
     $('#age').on('input', function() {
         var value = $(this).val().replace(/[^0-9]/g, '');
         if (value.length > 3) {
