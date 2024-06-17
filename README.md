@@ -31,3 +31,9 @@ Open the .env file and update the necessary environment variables such as DB_CON
 
 **Access the Application:**
 The project can be accessed through the provided URL, for example: 'http://127.0.0.1:8000'.
+
+**Additional Notes**
+-Admins can only modify/provide admin roles
+I've set an admin account with the username:admin and password:admin
+-registered users in the login page will automatically have user role.
+-make sure ID in your table is auto incremented.
