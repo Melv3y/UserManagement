@@ -95,7 +95,13 @@ class Users extends Controller
         $data->gender = $req->gender;
         $data->age = $req->age;
         $data->contactNumber = $req->contactNumber;
-        $data->role =$req->role;
+        
+        if ($req->session()->get('role') == "admin") {
+            $data->role = $req->role;
+        } else {
+            $data->role = "user";
+        }
+
         $data->reg_userName = $req->reg_userName;
         $data->reg_Password = $req->reg_Password;
         $data->save();

@@ -135,7 +135,7 @@
                                 Save changes
                             </button>
                             @if(session('role')=="admin")
-                            <a class="btn btn-secondary" href="/homepage">
+                            <a class="btn btn-secondary" id="goBackButton" href="/homepage">
                                 <i class="material-icons align-middle">
                                         arrow_back
                                 </i>
@@ -267,6 +267,11 @@ document.getElementById('editButton').addEventListener('click', function () {
 
             if (!isValid) {
                 event.preventDefault();
+            }
+            else {
+              $('#saveChangesButton').prop('disabled', true);
+              $('#saveChangesButton').html('Please wait...');
+              $('#goBackButton').addClass('disabled');
             }
         });
 

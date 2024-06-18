@@ -85,9 +85,9 @@
             <div class="modal-body">
                 Are you sure you want to delete this item?
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <a id="confirmDeleteButton" href="#" class="btn btn-danger">Delete</a>
+            <div class="modal-footer d-flex justify-content-between">
+                <a id="confirmDeleteButton" href="#" class="btn btn-danger w-50">Delete</a>
+                <button type="button" class="btn btn-secondary w-25" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>
@@ -178,8 +178,8 @@
                         </div>
                     </div>
                     <div class="mt-2 d-flex justify-content-between">
-                        <button type="submit" class="btn btn-primary w-50">Save User</button>
-                        <button type="button" class="btn btn-secondary w-25" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" id="registerButton" class="btn btn-primary w-50">Save User</button>
+                        <button type="button" id="cancelButton" class="btn btn-secondary w-25" data-bs-dismiss="modal">Cancel</button>
                     </div>
                 </form>
             </div>
@@ -285,7 +285,11 @@
 
             if (!isValid) {
                 event.preventDefault();
-            }
+            } else {
+              $('#registerButton').prop('disabled', true);
+              $('#registerButton').html('Please wait...');
+              $('#cancelButton').prop('disabled', true);
+          }
         });
     });
 </script>

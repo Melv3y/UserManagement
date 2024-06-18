@@ -45,7 +45,7 @@
                           </div>
                         </div>
                         <div class="card-footer">
-                            <button class="btn btn-primary w-100 mb-2" type="submit">
+                            <button id="loginButton" class="btn btn-primary w-100 mb-2" type="submit">
                                 Login
                             </button>
                             <div class="me-auto">
@@ -59,7 +59,6 @@
                 </div>
             </div>
        </div>
-
 
 <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -136,8 +135,8 @@
             </div>
           </div>
           <div class="float-end">
-            <button type="submit" class="btn btn-primary" >Save changes</button>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" id="registerButton" class="btn btn-primary" >Save changes</button>
+            <button type="button" id="cancelButton" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
           </div>
         </form>
       </div>
@@ -172,6 +171,9 @@
 
           if (!isValid) {
               event.preventDefault();
+          } else {
+              $('#loginButton').prop('disabled', true);
+              $('#loginButton').html('Please wait...');
           }
       });
   });
@@ -185,7 +187,6 @@
     }
     $(this).val(value);
   });
-
 
   $(document).ready(function() {
       $('#registerForm').submit(function(event) {
@@ -250,6 +251,11 @@
 
           if (!isValid) {
               event.preventDefault();
+          }
+          else {
+              $('#registerButton').prop('disabled', true);
+              $('#registerButton').html('Please wait...');
+              $('#cancelButton').prop('disabled', true);
           }
       });
   });
